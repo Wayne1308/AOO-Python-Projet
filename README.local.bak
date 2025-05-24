@@ -1,0 +1,123 @@
+# MeetingPro
+
+MeetingPro est une application de gestion de réservation de salles conçue dans le cadre d’un projet d'Architecture Orientée Objet (AOO) avec Python. Elle permet à une entreprise de gérer ses clients, ses salles, et les réservations à travers une interface graphique simple et intuitive basée sur Tkinter.
+
+---
+
+## ⚙️ Fonctionnement de l'application
+
+L'application suit le **modèle MVC** (Modèle-Vue-Contrôleur) :
+
+- **Modèle (`src/model/`)** : contient les classes `Client`, `Salle` et `Reservation`, avec gestion automatique des identifiants via UUID.
+- **Contrôleur (`src/controller/`)** : gère la logique métier via `ReservationController`, qui permet d'ajouter des clients, des salles, de gérer les conflits de réservation et d’enregistrer les données.
+- **Vue (`src/view/`)** : interface graphique avec 7 onglets intégrés dans `menu_principal.py`.
+
+---
+
+## 📋 Description des fonctionnalités (onglets)
+
+### 1. Ajouter un client
+L'utilisateur saisit :
+- **Nom**
+- **Prénom**
+- **Email**
+
+→ Le client est enregistré si son email est unique.
+
+### 2. Ajouter une salle
+L'utilisateur saisit :
+- **Identifiant unique** (ex: SALLE101)
+- **Type de salle** (Standard, Conférence, Informatique)
+- **Capacité**
+
+→ La salle est ajoutée si l’identifiant est unique.
+
+### 3. Salles réservables
+Affiche toutes les salles disponibles dans le système (identifiant, type, capacité).
+
+### 4. Réservations client
+Permet d'entrer l'**email d’un client** pour afficher toutes ses réservations passées :
+- Salle
+- Date de début
+- Date de fin
+
+### 5. Disponibilité salle
+Vérifie si une **salle donnée** est disponible à un **créneau précis** (début/fin) :
+- Si la salle est déjà réservée à ce créneau → Indisponible
+- Sinon → Disponible
+
+### 6. Salles disponibles
+Affiche toutes les **salles libres à un créneau donné** (début/fin).
+
+### 7. Réserver une salle
+L'utilisateur saisit :
+- **Email du client**
+- **Identifiant de la salle**
+- **Début** (format : YYYY-MM-DD HH:MM)
+- **Fin** (format : YYYY-MM-DD HH:MM)
+
+→ Une réservation est créée si aucune autre réservation ne recouvre ce créneau.
+
+---
+
+## 🧪 Tests unitaires
+
+Le dossier `tests/` contient des tests simples pour valider :
+- la création des `Client`, `Salle`, `Reservation`
+- le bon fonctionnement des constructeurs
+
+Exécution :
+```bash
+python -m unittest discover tests
+```
+
+---
+
+## 💾 Sauvegarde des données
+
+Toutes les données sont automatiquement enregistrées dans le fichier `data.json`, situé à la racine du projet.
+
+---
+
+## 🚀 Lancement de l’application
+
+Depuis le terminal :
+```bash
+python src/main.py
+```
+
+---
+
+## 🔧 Conversion en .EXE (Windows)
+
+1. Installer PyInstaller :
+```
+pip install pyinstaller
+```
+
+2. Générer un exécutable :
+```
+pyinstaller --onefile --noconsole src/main.py
+```
+
+3. L’exécutable sera disponible dans le dossier `dist/`.
+
+---
+
+## 📁 Structure du projet
+
+```
+MeetingPro/
+├── data.json
+├── README.md
+├── .gitignore
+├── src/
+│   ├── main.py
+│   ├── model/
+│   ├── controller/
+│   ├── view/
+│   └── utils/
+├── tests/
+├── doc/
+│   └── Rapport_Projet_AOO.pdf
+```
